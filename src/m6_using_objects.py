@@ -5,8 +5,8 @@ This module lets you practice  ** using objects **, including:
   -- accessing their DATA via INSTANCE VARIABLES
 
 Authors: David Mutchler, Dave Fisher, Valerie Galluzzi, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and JD Medlin.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -14,9 +14,10 @@ import rosegraphics as rg
 def main():
     """ Calls the other functions to demonstrate and/or test them. """
     # Test your functions by putting calls to them here:
+    two_circles()
+    circle_and_rectangle()
+    lines()
 
-
-def two_circles():
     """
     -- Constructs an rg.RoseWindow.
     -- Constructs and draws two rg.Circle objects on the window
@@ -27,15 +28,55 @@ def two_circles():
     -- Waits for the user to press the mouse, then closes the window.
     """
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement this function, per its doc-string above.
+    # DONE: 2. Implement this function, per its doc-string above.
     #    -- ANY two rg.Circle objects that meet the criteria are fine.
     #    -- File  COLORS.txt  lists all legal color-names.
     # Put a statement in   main   to test this function
     #    (by calling this function).
     # -------------------------------------------------------------------------
+def two_circles():
+    window = rg.RoseWindow()
+    circle1 = rg.Circle(rg.Point(200,100), 25)
+    circle1.attach_to(window)
+    circle2 = rg.Circle(rg.Point(100,100), 50)
+    circle2.attach_to(window)
+    circle1.fill_color = 'blue'
+    window.render(1)
+    window.close_on_mouse_click()
 
 
 def circle_and_rectangle():
+    window = rg.RoseWindow()
+    center = rg.Point(100,100)
+    radius = 75
+    circle3 = rg.Circle(center, radius)
+    circle3.attach_to(window)
+    circle3.fill_color = 'blue'
+    circle3.outline_thickness = 1
+    side1 = rg.Point(5, 5)
+    side2 = rg.Point(45, 45)
+    rectangle1 = rg.Rectangle(side1, side2)
+    rectangle1.attach_to(window)
+    rectangle1.outline_thickness = 1
+    window.render(1)
+    window.close_on_mouse_click()
+
+    print(circle3.outline_thickness)
+    print(circle3.fill_color)
+    print(center)
+    print(center.x)
+    print(center.y)
+    print(rectangle1.outline_thickness)
+    print('None')
+    avg_x = (side2.x - side1.x)/2 + side1.x
+    avg_y = (side2.y - side1.y)/2 + side1.y
+    rect_cetner_coord = rg.Point(avg_x, avg_y)
+    print(rect_cetner_coord)
+    print(avg_x)
+    print(avg_y)
+
+
+
     """
     -- Constructs an rg.RoseWindow.
     -- Constructs and draws a rg.Circle and rg.Rectangle
@@ -67,7 +108,7 @@ def circle_and_rectangle():
            150.0
     """
     # -------------------------------------------------------------------------
-    # TODO: 3. Implement this function, per its doc-string above.
+    # DONE: 3. Implement this function, per its doc-string above.
     #   -- ANY objects that meet the criteria are fine.
     # Put a statement in   main   to test this function
     #    (by calling this function).
@@ -78,6 +119,28 @@ def circle_and_rectangle():
 
 
 def lines():
+    window = rg.RoseWindow()
+    point1_line1 = rg.Point(25,50)
+    point2_line1 = rg.Point(100,50)
+    line1 = rg.Line(point1_line1, point2_line1)
+    line1.attach_to(window)
+
+    point1_line2 = rg.Point(25, 150)
+    point2_line2 = rg.Point(150, 150)
+    line2 = rg.Line(point1_line2, point2_line2)
+    line2.attach_to(window)
+    line2.thickness = 5
+    line2_midpoint = rg.Line.get_midpoint(line2)
+
+    print(" ")
+    print(line2_midpoint)
+    print(line2_midpoint.x)
+    print(line2_midpoint.y)
+
+    window.render()
+    window.close_on_mouse_click()
+
+
     """
     -- Constructs a rg.RoseWindow.
     -- Constructs and draws on the window two rg.Lines such that:
@@ -100,11 +163,14 @@ def lines():
     -- Waits for the user to press the mouse, then closes the window.
     """
     # -------------------------------------------------------------------------
-    # TODO: 4. Implement and test this function.
+    # DONE: 4. Implement and test this function.
     # -------------------------------------------------------------------------
 
 
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # -----------------------------------------------------------------------------
+
+
 main()
+
